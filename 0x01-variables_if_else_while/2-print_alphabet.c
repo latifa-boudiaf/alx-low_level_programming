@@ -6,10 +6,11 @@
  * main- the entry point of the C program.
  * Return: 0(success)
  */
-int main(void) {
+int main(void)
+{
     char letter = 'a';
-
-    while (letter <= 'z') {
+    while (letter <= 'z')
+    {
         putchar(letter);
         letter++;
     }
