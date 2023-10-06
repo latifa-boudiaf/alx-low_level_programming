@@ -3,7 +3,7 @@
 /**
  * main - Entry point
  *
- * Description: Prints all numbers in base 16 in lowercase, followed by a newline.
+ * Prints all numbers in base 16 in lowercase, followed by a newline.
  *
  * Return: Always 0 (Success)
  */
