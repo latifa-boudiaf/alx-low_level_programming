@@ -14,15 +14,15 @@ int main(void)
 
 	for (c = 'a'; c <= 'z'; c++)
 	{
-		putchar(c);  /* Print lowercase */
+		putchar(c);
 	}
 
 	for (c = 'A'; c <= 'Z'; c++)
 	{
-		putchar(c);  /* Print uppercase */
+		putchar(c);
 	}
 
-	putchar('\n');  /* Print a newline character */
+	putchar('\n');
 
 	return (0);
 }
