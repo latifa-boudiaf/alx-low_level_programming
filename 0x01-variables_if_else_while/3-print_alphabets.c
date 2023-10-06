@@ -1,11 +1,8 @@
 #include <stdio.h>
 
-
+/* Prints lowercase letters then uppercase letters */
 /**
- * main - Entry point
- *
- * Description: Print the alphabet in lowercase, then uppercase, followed by a newline.
- *
+ * main - Entry point of c program.
  * Return: Always 0 (Success)
  */
 int main(void)
