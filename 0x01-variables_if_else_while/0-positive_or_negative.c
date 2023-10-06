@@ -8,7 +8,6 @@
  * main- The main function of the program.
  * It checks whether a number is positive, negative, or zero.
  */
-
 int main(void)
 {
 	int n;
@@ -22,9 +21,7 @@ int main(void)
 	else
 		printf("%d is negative\n", n);
 	/**
-	* The main function of the program.
-	* It checks whether a number is positive, negative, or zero.
-	* @return 0 if the program runs successfully.
+	* @return if the program runs successfully it returns 0.
 	*/
 	return (0);
 }
