@@ -4,7 +4,7 @@
 /* more headers goes there */
 
 /* betty style doc for function main goes there */
-/*
+/**
  * The main function of the program.
  * It prints a message indicating whether a number is positive or negative.
  */
