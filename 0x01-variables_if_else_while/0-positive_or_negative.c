@@ -21,8 +21,8 @@ int main(void)
 	else
 		printf("%d is negative\n", n);
 	/**
-	* main- the main function of the program. 
-	* @return if the program runs successfully it returns 0.
+	* main- The entry point in C.
+	* Return: 0(success)
 	*/
 	return (0);
 }
