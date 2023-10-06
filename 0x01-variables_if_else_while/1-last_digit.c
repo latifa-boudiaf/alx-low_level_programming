@@ -14,14 +14,14 @@ int main(void)
 	srand(time(0));
 	n = rand() - RAND_MAX / 2;
 
-	int lastDigit = n % 10;
-	char *message;
+	int lastDigit = abs(n % 10);
+	
+	printf("Last digit of %d is %d and is ", n, lastDigit);
 	if (lastDigit > 5)
-		message = "greater than 5";
+		printf("greater than 5\n");
 	else if (lastDigit == 0)
-		message = "0";
+		printf("0\n");
 	else
-		message = "less than 6 and not 0";
-	printf("Last digit of %d is %d and is %s\n", n, lastDigit, message);
+		printf("less than 6 and not 0\n");
 	return (0);
 }
