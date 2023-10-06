@@ -13,13 +13,13 @@ int main(void)
 	{
 		for (j = i; j <= 99; j++)
 		{
-			// Print the first two-digit number with leading zeros if needed
+			/* Print the first two-digit number with leading zeros if needed */
 			putchar('0' +  (i / 10));
 			putchar('0' + (i % 10));
-			// Print a space between the two numbers
+			/* Print a space between the two numbers */
 			putchar('0' + (j / 10));
 			putchar('0' + (j % 10));
-			// Print a comma and space between combinations
+			/* Print a comma and space between combinations */
 			if (i != 99 || j != 99)
 			{
 				putchar(',');
