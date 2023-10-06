@@ -5,7 +5,7 @@
 /* This program checks if a number is positive or negative */
 
 /**
- * The main function of the program.
+ * main- The main function of the program.
  * It checks whether a number is positive, negative, or zero.
  */
 
@@ -22,9 +22,9 @@ int main(void)
 	else
 		printf("%d is negative\n", n);
 	/**
- 	* The main function of the program.
+	* The main function of the program.
 	* It checks whether a number is positive, negative, or zero.
- 	* @return 0 if the program runs successfully.
- 	*/
+	* @return 0 if the program runs successfully.
+	*/
 	return (0);
 }
