@@ -1,2 +1,2 @@
 #!/bin/bash
-cpp -nostdinc -I /usr/include "$CFILE" -o c
+gcc -E $CFILE -o c
