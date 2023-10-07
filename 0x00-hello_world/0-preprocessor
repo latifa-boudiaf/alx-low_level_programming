@@ -1,5 +1,2 @@
 #!/bin/bash
-CFILE="main.c"
-OUTPUT_FILE="c"
-cpp "$CFILE" -o "$OUTPUT_FILE"
-cat "$OUTPUT_FILE"
+cpp $CFILE > c
