@@ -1,12 +1,12 @@
-#include <stdio.h>
+#include "main.h"
 
 /* a program that prints _putchar */
 /**
  * main- entry point of the program.
  * Return: 0(success).
  */
-int main(void)
+int _putchar(void)
 {
-	printf("_putchar\n");
+	write("_putchar\n");
 	return (0);
 }
