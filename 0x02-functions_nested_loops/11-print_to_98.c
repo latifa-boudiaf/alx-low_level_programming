@@ -2,6 +2,7 @@
 
 /**
  * print_to_98- Prints the natural numbers between n and 98
+ * @n: the given natural number.
  */
 
 void print_to_98(int n)
