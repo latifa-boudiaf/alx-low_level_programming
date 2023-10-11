@@ -7,7 +7,7 @@
 
 int main(void)
 {
-	int limit = 1024; // The limit (exclusive)
+	int limit = 1024; /* The limit (exclusive) */
 	int sum = 0;
 
 	for (int i = 1; i < limit; i++)
