@@ -5,15 +5,13 @@
  */
 void print_most_numbers(void)
 {
-	char number = '0';
+	char i;
 
-	while (number <= '9')
+	for (i = '0' ; i <= '9' ; i++)
 	{
-		if (number != '2' && number != '4')
-		{
-			_putchar(number + '0');
-		}
-		number++;
+		if (i == '2' || i == '4')
+			continue;
+		putchar(i);
 	}
 	_putchar('\n');
 }
