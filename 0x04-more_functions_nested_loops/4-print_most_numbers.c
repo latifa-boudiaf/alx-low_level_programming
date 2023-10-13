@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
  * print_most_numbers - Prints numbers from 0 to 9 (excluding 2 and 4) and a newline
@@ -7,13 +6,12 @@
 
 void print_most_numbers(void)
 {
-	int number = 0;
+	char digit;
 
-	while (number <= 9)
+	for (digit = '0'; digit <= '9'; digit++)
 	{
-		if (number != 2 && number != 4)
-			_putchar(number + '0');
-		number++;
+		if (digit != '2' && digit != '4')
+			_putchar(digit);
 	}
 
 	_putchar('\n');
