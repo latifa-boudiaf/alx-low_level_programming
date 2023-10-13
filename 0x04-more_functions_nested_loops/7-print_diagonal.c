@@ -10,15 +10,21 @@ void print_diagonal(int n)
 		_putchar('\n');
 	else
 	{
-		int i, j;
+		int spaces = 0;
 
-		for (i = 0; i < n; i++)
+		while (spaces < n)
 		{
-			for (j = 0; j < i; j++)
-				_putchar(' ');
-		}
-		_putchar('\\');
-		_putchar('\n');
-	}
+			int slashes = 0;
 
+			while (slashes < spaces)
+			{
+				_putchar(' ');
+				slashes++;
+			}
+
+			_putchar('\\');
+			_putchar('\n');
+			spaces++;
+		}
+	}
 }
