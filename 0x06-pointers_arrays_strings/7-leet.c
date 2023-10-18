@@ -1,9 +1,10 @@
 #include "main.h"
 
 /**
- * leet- a funtion that encodes a string into 1337.
- * @p: the string to encode.
- * @i: iterates over the characters to encode.
+ * leet - a function that encodes a string into 1337.
+ * @str: the string to encode.
+ *
+ * Return: A pointer to the encoded string.
  */
 
 char *leet(char *str)
