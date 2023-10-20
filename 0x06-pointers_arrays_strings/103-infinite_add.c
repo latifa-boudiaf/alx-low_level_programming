@@ -13,7 +13,7 @@
 
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int len1, len2, carry, sum, index;
+	int len1, len2, carry, sum, index, i, j;
 
 	len1 = strlen(n1) - 1;
 	len2 = strlen(n2) - 1;
@@ -45,7 +45,8 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	}
 
 	r[index] = '\0';
-	for (int i = 0, j = index - 1; i < j; i++, j--)
+
+	for (i = 0, j = index - 1; i < j; i++, j--)
 	{
 		char temp = r[i];
 		r[i] = r[j];
