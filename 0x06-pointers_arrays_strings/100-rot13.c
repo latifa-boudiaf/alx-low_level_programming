@@ -1,16 +1,16 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
- * rot13 - encoder rot13
- * @s: pointer to string params
+ * rot13 - Encodes a string using the ROT13 cipher.
+ * @s: Pointer to the string to be encoded.
  *
- * return: *S
+ * Return: Pointer to the encoded string.
  */
-
 char *rot13(char *s)
 {
-	int i,j;
-	char data1[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefjhijklmnopqrstuvwxyz";
+	int i, j;
+	char data1[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	char datarot[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
 	for (i = 0; s[i] != '\0'; i++)
@@ -26,3 +26,4 @@ char *rot13(char *s)
 	}
 	return (s);
 }
+
