@@ -2,10 +2,10 @@
 #include "main.h"
 
 /**
- * infinite_add - Add two numbers represented as strings
+ * infinite_add - Adds two numbers represented as strings
  * @n1: Text representation of the first number to add
  * @n2: Text representation of the second number to add
- * @r: Pointer to buffer to store the result
+ * @r: Pointer to the buffer to store the result
  * @size_r: Buffer size
  *
  * Return: A pointer to the result (in the buffer r) or 0 if it cannot fit.
@@ -36,7 +36,7 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
         }
 
         carry = sum / 10;
-        if (index >= size_r - 1)
+        if (index >= size_r - 1) /* Check if the result can fit in the buffer */
             return 0;
 
         r[index] = (sum % 10) + '0';
