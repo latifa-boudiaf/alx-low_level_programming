@@ -14,8 +14,7 @@ int length(char *s)
 		s++;
 		return (length(s) + 1);
 	}
-	else
-		return (0);
+	return (0);
 }
 
 /**
@@ -30,13 +29,11 @@ int palindrome(char *s, int l, int i)
 {
 	if (i == l)
 		return (1);
-	else
-	{
-		if (s[i] == s[l])
-			return (palindrome(s, l - 1, i + 1));
-		else
-			return (0);
-	}
+	
+	if (s[i] == s[l])
+		return (palindrome(s, l - 1, i + 1));
+
+	return (0);
 }
 
 /**
