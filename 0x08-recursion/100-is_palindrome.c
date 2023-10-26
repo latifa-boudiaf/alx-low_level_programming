@@ -44,4 +44,4 @@ int palindrome(char *s, int l, int i)
 int is_palindrome(char *s)
 {
 	return (palindrome(s, length(s) - 1, 0));
-}	
+}
