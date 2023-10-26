@@ -2,14 +2,14 @@
 #include "main.h"
 
 /**
- * sqrt - Find the square root
+ * sqr - Find the square root
  * @n: Number to find square root of
  * @i: The number checked to see if it's the sqrt of n
  *
  * Return: The square root value
  */
 
-int sqrt(int n, int i)
+int sqr(int n, int i)
 {
 	if (i * i == n)
 	{
@@ -17,7 +17,7 @@ int sqrt(int n, int i)
 	}
 	else if (i >= n / 2)
 		return (-1);
-	return (sqrt_check(n, i + 1));
+	return (sqr(n, i + 1));
 }
 
 /**
@@ -33,5 +33,5 @@ int _sqrt_recursion(int n)
 	if (n <= 1)
 		return (n);
 	else
-		return (sqrt(n, 2));
+		return (sqr(n, 2));
 }
