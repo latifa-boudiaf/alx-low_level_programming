@@ -7,15 +7,15 @@
  * Return: length of the string
  */
 
-int length(char* s)
+int length (char *s)
 {
-	if(*s)
+	if (*s)
 	{
 		s++;
-		return(length(s) + 1);
+		return (length(s) + 1);
 	}
 	else
-		return 0;
+		return (0);
 }
 
 /**
@@ -26,16 +26,16 @@ int length(char* s)
  * Return: 1 if string is a palindrome, 0 if it is not.
  */
 
-int palindrome(char *s, int l, int i)
+int palindrome (char *s, int l, int i)
 {
-	if( i == l)
-		return 1;
+	if (i == l)
+		return (1);
 	else
 	{
-		if(s[i] == s[l])
-			return palindrome(s, l - 1, i + 1);
+		if (s[i] == s[l])
+			return (palindrome(s, l - 1, i + 1));
 		else
-			return 0;
+			return (0);
 	}
 }
 
@@ -45,7 +45,7 @@ int palindrome(char *s, int l, int i)
  * Return: 1 if string is a palindrome, 0 if it is not.
  */
 
-int is_palindrome(char *s)
+int is_palindrome (char *s)
 {
-	return palindrome(s, length(s) - 1, 0);
+	return (palindrome(s, length(s) - 1, 0));
 }	
