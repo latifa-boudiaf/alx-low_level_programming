@@ -9,7 +9,7 @@
 
 int length(char* s)
 {
-	if(s*)
+	if(*s)
 	{
 		s++;
 		return(length(s) + 1);
