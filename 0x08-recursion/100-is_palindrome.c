@@ -27,7 +27,7 @@ int length(char *s)
 
 int palindrome(char *s, int l, int i)
 {
-	if (i == l)
+	if (i >= l)
 		return (1);
 	if (s[i] == s[l])
 		return (palindrome(s, l - 1, i + 1));
