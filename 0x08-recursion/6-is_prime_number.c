@@ -13,6 +13,8 @@ int prime(int n, int i)
 {
 	if (n % i == 0 && i < (n / 2))
 		return (0);
+	else if (i >= (n / 2))
+		return (1);
 	else
 		return (prime(n, i + 1));
 }
