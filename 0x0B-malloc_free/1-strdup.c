@@ -12,8 +12,10 @@ char *_strdup(char *str)
 	if (str == NULL)
 		return (NULL);
 
-	size_t size = strlen(str);
+	size_t size;
+	size = strlen(str);
 	char *ptr;
+
 	ptr = malloc(size + 1);
 
 	if (ptr == NULL)
