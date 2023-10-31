@@ -1,90 +1,73 @@
+#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include "main.h"
 
 /**
- *
+ * strtow - function that splits string into words
+ * @str: string being passed
+ * Return: null if string is empty or null or function fails
  */
 char **strtow(char *str)
 {
-	int word_count, in_word, word_index, word_start, word_length, i, j;
-	char **words;
+    int total_words = 0, b = 0, c = 0, length = 0;
+    char **words, *found_word;
 
-	if (str == NULL || *str == '\0')
-		return (NULL);
-	word_count = 0;
-	in_word = 0;
-	for (i = 0; str[i] != '\0'; i++)
-	{
-		if (str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
-		{
-			if (!in_word)
-			{
-				in_word = 1;
-				word_count++;
-			}
-		}
-		else
-			in_word = 0;
-	}
-	**words = (char **)malloc((word_count + 1) * sizeof(char *));
-	if (words == NULL)
-		return (NULL);
-	word_index = 0;
-	word_start = 0;
-	in_word = 0;
-	word_length = 0;
-	for (i = 0; str[i] != '\0'; i++)
-	{
-		if (str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
-		{
-			if (!in_word)
-			{
-				in_word = 1;
-				word_start = i;
-			}
-		}
-		else
-		{
-			if (in_word)
-			{
-				word_length = i - word_start;
-				words[word_index] = (char *)malloc(word_length + 1);
+    if (str == NULL || *str == '\0')
+        return (NULL);
 
-				if (words[word_index] == NULL)
-				{
-					for (j = 0; j < word_index; j++)
-						free(words[j]);
-					free(words);
-					return (NULL);
-				}
+    for (int a = 0; str[a] != '\0'; a++)
+    {
+        if (*str == ' ')
+            str++;
+        else
+        {
+            for (; str[a] != ' ' && str[a] != '\0'; a++)
+                str++;
+            total_words++;
+        }
+    }
 
-				strncpy(words[word_index], str + word_start, word_length);
-				words[word_index][word_length] = '\0';
-				word_index++;
-			}
-			in_word = 0;
-		}
-	}
-	if (in_word)
-	{
-		word_length = strlen(str) - word_start;
-		words[word_index] = (char *)malloc(word_length + 1);
+    if (total_words == 0)
+        return (NULL);
 
-		if (words[word_index] == NULL)
-		{
-			for (j = 0; j < word_index; j++)
-			{
-				free(words[j]);
-			}
-			free(words);
-			return (NULL);
-		}
-		strncpy(words[word_index], str + word_start, word_length);
-		words[word_index][word_length] = '\0';
-		word_index++;
-	}
-	words[word_index] = NULL;
-	return (words);
+    words = malloc((total_words + 1) * sizeof(char *);
+
+    if (words == NULL)
+        return (NULL);
+
+    for (; *str != '\0' && b < total_words;)
+    {
+        if (*str == ' ')
+            str++;
+        else
+        {
+            found_word = str;
+            for (; *str != ' ' && *str != '\0';)
+            {
+                length++;
+                str++;
+            }
+            words[b] = malloc((length + 1) * sizeof(char));
+            if (words[b] == NULL)
+            {
+                while (b > 0)
+                    free(words[--b]);
+                free(words);
+                return (NULL);
+            }
+            while (*found_word != ' ' && *found_word != '\0')
+            {
+                words[b][c] = *found_word;
+                found_word++;
+                c++;
+            }
+            words[b][c] = '\0';
+            b++;
+            c = 0;
+            length = 0;
+            str++;
+        }
+    }
+    return (words);
 }
+
