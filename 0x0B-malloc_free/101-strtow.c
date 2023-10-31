@@ -11,7 +11,7 @@
 
 int countWords(char *str)
 {
-	int a, total= 0;
+	int a, total = 0;
 
 	for (a = 0; str[a] != '\0'; a++)
 	{
@@ -85,7 +85,10 @@ char **strtow(char *str)
 				c++;
 			}
 			words[b][c] = '\0';
-			b++; c = 0; length = 0; str++;
+			b++;
+		       	c = 0;
+		       	length = 0;
+		       	str++;
 		}
 	}
 	return (words);
