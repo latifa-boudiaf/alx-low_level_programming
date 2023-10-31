@@ -1,95 +1,31 @@
 #include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
-
+#include <stdio.h>
+#include <string.h>
 /**
- * countWords - function to calculate number of words
- * @str: string being passed to check for words
+ * strtow - concatenates arguments.
+ * @str: String to be splitted.
  *
- * Return: countWords of words
+ * Return: a pointer to array of String.
  */
-
-int countWords(char *str)
-{
-	int a, total = 0;
-
-	for (a = 0; str[a] != '\0'; a++)
-	{
-		if (*str == ' ')
-			str++;
-		else
-		{
-			for (; str[a] != ' ' && str[a] != '\0'; a++)
-				str++;
-			total++;
-		}
-	}
-	return (total);
-}
-
-/**
- * free_all - frees the memory
- * @string: pointer values being passed for freeing
- * @i: counter
- */
-
-void free_all(char **string, int i)
-{
-	for (; i > 0;)
-		free(string[--i]);
-	free(string);
-}
-
-
-/**
- * strtow - function that splits string into words
- * @str: string being passed
- * Return: null if string is empty or null or function fails
-*/
-
 char **strtow(char *str)
 {
-	int total_words = 0, b = 0, c = 0, length = 0;
-	char **words, *found_word;
+	char *array = NULL;
+	unsigned int i = 0, j = 0, k;
 
-	if (str == 0 || *str == 0) 
+	if (strncmp(str, "", 1) || str == NULL)
 		return (NULL);
-	total_words = countWords(str);
-	if (total_words == 0) 
+	array = malloc((i + j + 1) * sizeof(char));
+	if (array == NULL)
 		return (NULL);
-	words = malloc((total_words + 1) * sizeof(char *));
-	if (words == 0) 
-		return (NULL);
-	for (; *str != '\0' &&  b < total_words;)
+	for (k = 0; k < i; k++)
+		array[k] = str[k];
+	i = k;
+	for (k = 0; k < j; k++)
 	{
-		if (*str == ' ')
-			str++;
-		else
-		{
-			found_word = str;
-			for (; *str != ' ' && *str != '\0';)
-			{
-				length++;
-				str++;
-			}
-			words[b] = malloc((length + 1) * sizeof(char));
-			if (words[b] == 0)
-			{
-				free_all(words, b);
-				return (NULL);
-			}
-			while (*found_word != ' ' && *found_word != '\0')
-			{
-				words[b][c] = *found_word;
-				found_word++;
-				c++;
-			}
-			words[b][c] = '\0';
-			b++;
-			c = 0;
-			length = 0;
-			str++;
-		}
+		array[i] = str[k];
+		i++;
 	}
-	return (words);
+	array[i] = '\0';
+	return (NULL);
 }
