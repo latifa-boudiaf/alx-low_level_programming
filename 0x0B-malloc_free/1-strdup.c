@@ -9,11 +9,11 @@
  */
 char *_strdup(char *str)
 {
+	char *ptr;
+	size_t size;
+
 	if (str == NULL)
 		return (NULL);
-
-	size_t size;
-	char *ptr;
 
 	size = strlen(str);
 	ptr = malloc(size + 1);
