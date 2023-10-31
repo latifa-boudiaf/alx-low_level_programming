@@ -1,11 +1,11 @@
-#include "main.h"
+#include "holberton.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 /**
- * strtow - function that splits string into words
- * @str: string being passed
- * Return: null if string is empty or null or function fails
+ * strtow - function that splits a string into words
+ * @str: the string to split
+ * Return: array of words (strings)
  */
 char **strtow(char *str)
 {
@@ -15,16 +15,19 @@ char **strtow(char *str)
     if (str == NULL || *str == '\0')
         return (NULL);
 
+    total_words = 0;
     for (int a = 0; str[a] != '\0'; a++)
     {
-        if (*str == ' ')
-            str++;
-        else
+        if (str[a] == ' ')
+            continue;
+
+        found_word = str + a;
+        while (str[a] != ' ' && str[a] != '\0')
         {
-            for (; str[a] != ' ' && str[a] != '\0'; a++)
-                str++;
-            total_words++;
+            length++;
+            a++;
         }
+        total_words++;
     }
 
     if (total_words == 0)
@@ -35,39 +38,35 @@ char **strtow(char *str)
     if (words == NULL)
         return (NULL);
 
-    for (; *str != '\0' && b < total_words;)
+    for (int i = 0; i < total_words; i++)
     {
-        if (*str == ' ')
+        while (*str == ' ')
             str++;
-        else
+
+        found_word = str;
+        length = 0;
+        while (*str != ' ' && *str != '\0')
         {
-            found_word = str;
-            for (; *str != ' ' && *str != '\0';)
-            {
-                length++;
-                str++;
-            }
-            words[b] = malloc((length + 1) * sizeof(char));
-            if (words[b] == NULL)
-            {
-                while (b > 0)
-                    free(words[--b]);
-                free(words);
-                return (NULL);
-            }
-            while (*found_word != ' ' && *found_word != '\0')
-            {
-                words[b][c] = *found_word;
-                found_word++;
-                c++;
-            }
-            words[b][c] = '\0';
-            b++;
-            c = 0;
-            length = 0;
+            length++;
             str++;
         }
+
+        words[i] = malloc((length + 1) * sizeof(char));
+        if (words[i] == NULL)
+        {
+            while (i > 0)
+                free(words[--i]);
+            free(words);
+            return (NULL);
+        }
+
+        for (int j = 0; j < length; j++)
+        {
+            words[i][j] = found_word[j];
+        }
+        words[i][length] = '\0';
     }
+    words[total_words] = NULL;
     return (words);
 }
 
