@@ -1,66 +1,95 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
-int countWords(char *str) {
-    int count = 0;
-    bool inWord = false;
+/**
+ * countWords - function to calculate number of words
+ * @str: string being passed to check for words
+ *
+ * Return: countWords of words
+ */
 
-    for (int i = 0; str[i] != '\0'; i++) {
-        if (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\r' || str[i] == '\f' || str[i] == '\v') {
-            inWord = false;
-        } else if (!inWord) {
-            inWord = true;
-            count++;
+int countWords(char *str)
+{
+        int a, total = 0;
+
+        for (a = 0; str[a] != '\0'; a++)
+        {
+                if (*str == ' ')
+                        str++;
+                else
+                {
+                        for (; str[a] != ' ' && str[a] != '\0'; a++)
+                                str++;
+                        total++;
+                }
         }
-    }
-    return count;
+        return (total);
 }
 
-char **strtow(char *str) {
-    if (str == NULL || *str == '\0') {
-        return NULL;
-    }
+/**
+ * free_all - frees the memory
+ * @string: pointer values being passed for freeing
+ * @i: counter
+ */
 
-    int totalWords = countWords(str);
-    char **words = malloc((totalWords + 1) * sizeof(char *));
-
-    if (words == NULL) {
-        return NULL;
-    }
-
-    for (int b = 0, i = 0; str[i] != '\0' && b < totalWords; i++) {
-        if (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\r' || str[i] == '\f' || str[i] == '\v') {
-            continue;
-        }
-
-        char *foundWord = str + i;
-        int length = 0;
-
-        while (str[i] != ' ' && str[i] != '\0') {
-            length++;
-            i++;
-        }
-
-        words[b] = malloc((length + 1) * sizeof(char));
-        if (words[b] == NULL) {
-            while (b > 0) {
-                free(words[--b]);
-            }
-            free(words);
-            return NULL;
-        }
-
-        for (int c = 0; *foundWord != ' ' && *foundWord != '\0'; c++) {
-            words[b][c] = *foundWord++;
-        }
-
-        words[b][length] = '\0';
-        b++;
-    }
-
-    words[totalWords] = NULL;
-    return words;
+void free_all(char **string, int i)
+{
+        for (; i > 0;)
+                free(string[--i]);
+        free(string);
 }
 
+
+/**
+ * strtow - function that splits string into words
+ * @str: string being passed
+ * Return: null if string is empty or null or function fails
+*/
+
+char **strtow(char *str)
+{
+        int total_words = 0, b = 0, c = 0, length = 0;
+        char **words, *found_word;
+
+        if (str == 0 || *str == 0) 
+                return (NULL);
+        total_words = countWords(str);
+        if (total_words == 0) 
+                return (NULL);
+        words = malloc((total_words + 1) * sizeof(char *));
+        if (words == 0) 
+                return (NULL);
+        for (; *str != '\0' &&  b < total_words;)
+        {
+                if (*str == ' ')
+                        str++;
+                else
+                {
+                        found_word = str;
+                        for (; *str != ' ' && *str != '\0';)
+                        {
+                                length++;
+                                str++;
+                        }
+                        words[b] = malloc((length + 1) * sizeof(char));
+                        if (words[b] == 0)
+                        {
+                                free_all(words, b);
+                                return (NULL);
+                        }
+                        while (*found_word != ' ' && *found_word != '\0')
+                        {
+                                words[b][c] = *found_word;
+                                found_word++;
+                                c++;
+                        }
+                        words[b][c] = '\0';
+                        b++;
+                        c = 0;
+                        length = 0;
+                        str++;
+                }
+        }
+        return (words);
+}
