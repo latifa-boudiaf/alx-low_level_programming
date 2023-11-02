@@ -21,7 +21,7 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 		return (NULL);
 	
 	total_size = nmemb * size;
-	*byte_ptr = (unsigned char *)ptr;
+	byte_ptr = (unsigned char *)ptr;
 	for (i = 0; i < total_size; i++)
 		byte_ptr[i] = 0;
 	return (ptr);
