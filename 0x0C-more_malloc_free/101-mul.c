@@ -10,7 +10,9 @@
  */
 int is_valid_number(char *str)
 {
-	for (int i = 0; str[i] != '\0'; i++) 
+	int i;
+
+	for (i = 0; str[i] != '\0'; i++) 
 		if (!isdigit(str[i])) 
 			return (0);  /* Not a valid number */
 	return (1);  /* Valid number */
