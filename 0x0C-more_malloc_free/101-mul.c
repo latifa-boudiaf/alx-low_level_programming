@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include "main.h"
 
 /**
  * is_valid_number - Check if a string contains only digits
@@ -32,8 +33,8 @@ int multiply(int num1, int num2)
 
 int main(int argc, char *argv[])
 {
-	char *num1_str; = argv[1];
-	char *num2_str;= argv[2];
+	char *num1_str;
+	char *num2_str;
 	int num1, num2, result;
 
 	num1_str = argv[1];
