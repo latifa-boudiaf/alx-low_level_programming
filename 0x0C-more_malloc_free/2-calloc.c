@@ -19,7 +19,7 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 	ptr = malloc(size * nmemb);
 	if (ptr == NULL)
 		return (NULL);
-	
+
 	total_size = nmemb * size;
 	byte_ptr = (unsigned char *)ptr;
 	for (i = 0; i < total_size; i++)
