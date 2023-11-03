@@ -40,7 +40,7 @@ char *create_x_array(int size)
 
     array[index] = '\0';
 
-    return array;
+    return (array);
 }
 
 /**
@@ -55,7 +55,7 @@ char *iterate_zeros(char *str)
     while (*str && *str == '0')
         str++;
 
-    return str;
+    return (str);
 }
 
 /**
@@ -76,7 +76,7 @@ int get_digit(char c)
         exit(98);
     }
 
-    return digit;
+    return (digit);
 }
 
 /**
@@ -197,7 +197,7 @@ int main(int argc, char *argv[])
     if (*(argv[1]) == '\0' || *(argv[2]) == '\0')
     {
         printf("0\n");
-        return 0;
+        return (0);
     }
 
     size = find_length(argv[1]) + find_length(argv[2]);
@@ -220,6 +220,6 @@ int main(int argc, char *argv[])
     free(next_result);
     free(final_result);
 
-    return 0;
+    return (0);
 }
 
