@@ -1,10 +1,14 @@
 #include <stdio.h>
+
 /**
- * main - entry point
- * Return: 0 (success)
+ * main - Entry point
+ *
+ * Description: Prints the name of the source file.
+ *
+ * Return: Always 0 (Success)
  */
 int main(void)
 {
- printf("%s\n", __FILE__);
- return (0);
+    printf("%s\n", __FILE__);
+    return (0);
 }
