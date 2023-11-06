@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 /**
-  * init_dog - initialize struct dog.
+  * init_dog - initialize struct dog->
   * @d: name of struct
   * @name: name of dog in struct
   * @age: age of dog in struct
@@ -11,7 +11,7 @@
 
 void init_dog(struct dog *d, char *name, float age, char *owner)
 {
-	d.name = name;
-	d.age = age;
-	d.owner = owner;
+	d->name = name;
+	d->age = age;
+	d->owner = owner;
 }
