@@ -10,29 +10,29 @@
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	int nlen, olen, i;
-	dog_t *spike;
+	dog_t *doggy;
 
 	nlen = olen = 0;
-	while (name[nlen++])
+	while (; name[nlen++] != '\0'; )
 		;
-	while (owner[olen++])
+	for (; owner[olen++] != '\0'; )
 		;
-	spike = malloc(sizeof(dog_t));
-	if (spike == NULL)
+	doggy = malloc(sizeof(dog_t));
+	if (doggy == NULL)
 		return (NULL);
 
-	spike->name = malloc(nlen * sizeof(doggy->name));
-	if (spike == NULL)
+	doggy->name = malloc(nlen * sizeof(doggy->name));
+	if (doggy == NULL)
 		return (NULL);
 	for (i = 0; i < nlen; i++)
-		spike->name[i] = name[i];
+		doggy->name[i] = name[i];
 
-	spike->age = age;
+	doggy->age = age;
 
-	spike->owner = malloc(olen * sizeof(doggy->owner));
-	if (spike == NULL)
+	doggy->owner = malloc(olen * sizeof(doggy->owner));
+	if (doggy == NULL)
 		return (NULL);
 	for (i = 0; i < olen; i++)
-		spike->owner[i] = owner[i];
-	return (spike);
+		doggy->owner[i] = owner[i];
+	return (doggy);
 }
