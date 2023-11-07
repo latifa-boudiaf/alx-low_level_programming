@@ -6,17 +6,15 @@
  * @name: name of the dog
  * @age: age of the dog
  * @owner: name of the owner of the dog
- * Description: Defines metadata about the dog
+ * Description: Defines metadata about dog.
  */
 
-struct dog 
+typedef struct dog 
 {
 	char *name;
 	float age;
 	char *owner;
-}
-
-typedef struct dog dog_t;
+} dog_t;
 
 /* Additional function prototypes */
 
