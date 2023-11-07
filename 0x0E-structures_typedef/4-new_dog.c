@@ -1,5 +1,6 @@
 #include "dog.h"
 #include <stdlib.h>
+
 /**
   * new_dog - creates a new struct of type dog
   * @name: struct parameter name
@@ -7,32 +8,33 @@
   * @owner: struct parameter owner
   * Return: returns pointer to buffer of datatype dog
   */
+
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	int nlen, olen, i;
+	int len_name, len_owner, i;
 	dog_t *doggy;
 
-	nlen = olen = 0;
-	while (; name[nlen++] != '\0'; )
+	len_name = len_owner = 0;
+	while (name[len_name++])
 		;
-	for (; owner[olen++] != '\0'; )
+	while (owner[len_owner++])
 		;
 	doggy = malloc(sizeof(dog_t));
 	if (doggy == NULL)
 		return (NULL);
 
-	doggy->name = malloc(nlen * sizeof(doggy->name));
+	doggy->name = malloc(len_name * sizeof(doggy->name));
 	if (doggy == NULL)
 		return (NULL);
-	for (i = 0; i < nlen; i++)
+	for (i = 0; i < len_name; i++)
 		doggy->name[i] = name[i];
 
 	doggy->age = age;
 
-	doggy->owner = malloc(olen * sizeof(doggy->owner));
+	doggy->owner = malloc(len_owner * sizeof(doggy->owner));
 	if (doggy == NULL)
 		return (NULL);
-	for (i = 0; i < olen; i++)
+	for (i = 0; i < len_owner; i++)
 		doggy->owner[i] = owner[i];
 	return (doggy);
 }
