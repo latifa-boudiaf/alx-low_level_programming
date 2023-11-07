@@ -1,5 +1,6 @@
 #ifndef DOG_H
 #define DOG_H
+
 /**
  * struct dog - dog data
  * @name: name of the dog
@@ -7,12 +8,15 @@
  * @owner: name of the owner of the dog
  * Description: Defines metadata about the dog
  */
-typedef struct dog 
+
+struct dog 
 {
 	char *name;
 	float age;
 	char *owner;
-} dog_t;
+}
+
+typedef struct dog dog_t;
 
 /* Additional function prototypes */
 
