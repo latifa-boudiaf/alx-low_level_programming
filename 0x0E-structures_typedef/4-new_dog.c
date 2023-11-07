@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <string.h>
 #include "dog.h"
 
 /**
@@ -11,38 +10,50 @@
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	int len_name, len_owner;
-	dog_t *doggy;
+    int len_name, len_owner;
+    dog_t *doggy;
+    int i;
 
-	if (name == NULL || owner == NULL)
-		return (NULL);
+    if (name == NULL || owner == NULL)
+        return (NULL);
 
-	len_name = strlen(name);
-	len_owner = strlen(owner);
+    len_name = 0;
+    while (name[len_name])
+        len_name++;
 
-	doggy = malloc(sizeof(dog_t);
-	if (doggy == NULL)
-		return (NULL);
+    len_owner = 0;
+    while (owner[len_owner])
+        len_owner++;
 
-	doggy->name = malloc((len_name + 1) * sizeof(char));
-	if (doggy->name == NULL)
-	{
-		free(doggy);
-		return (NULL);
-	}
-	strcpy(doggy->name, name);
+    doggy = malloc(sizeof(dog_t));
+    if (doggy == NULL)
+        return (NULL);
 
-	doggy->age = age;
+    doggy->name = malloc((len_name + 1) * sizeof(char));
+    if (doggy->name == NULL)
+    {
+        free(doggy);
+        return (NULL);
+    }
 
-	doggy->owner = malloc((len_owner + 1) * sizeof(char));
-	if (doggy->owner == NULL)
-	{
-		free(doggy->name);
-		free(doggy);
-		return (NULL);
-	}
-	strcpy(doggy->owner, owner);
+    for (i = 0; i < len_name; i++)
+        doggy->name[i] = name[i];
+    doggy->name[i] = '\0';
 
-	return (doggy);
+    doggy->age = age;
+
+    doggy->owner = malloc((len_owner + 1) * sizeof(char));
+    if (doggy->owner == NULL)
+    {
+        free(doggy->name);
+        free(doggy);
+        return (NULL);
+    }
+
+    for (i = 0; i < len_owner; i++)
+        doggy->owner[i] = owner[i];
+    doggy->owner[i] = '\0';
+
+    return (doggy);
 }
 
