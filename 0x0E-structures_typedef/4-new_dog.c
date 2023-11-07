@@ -15,9 +15,9 @@ dog_t *new_dog(char *name, float age, char *owner)
 	dog_t *spike;
 
 	len_name = len_owner = 0;
-	for (; name[len_name++ != '\0']; )
+	for (; name[len_name++] != '\0'; )
 		;
-	for (; owner[len_owner++ != '\0']; )
+	for (; owner[len_owner++] != '\0'; )
 		;
 	spike = malloc(sizeof(dog_t));
 	if (spike == NULL)
