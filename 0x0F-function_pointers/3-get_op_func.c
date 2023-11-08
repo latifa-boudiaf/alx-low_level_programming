@@ -12,9 +12,6 @@ int (*get_op_func(char *s))(int, int)
 {
 	int i;
 	
-	if (s == NULL)
-		return (NULL);
-	
 	op_t operations[] = {
 		{"+", op_add},
 		{"-", op_sub},
