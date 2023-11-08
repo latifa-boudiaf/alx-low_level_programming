@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		exit(99);
 	}
-	result = fun(n1, n2);
+	res = fun(num1, num2);
 
 	printf("%d\n", res);
 	return (0);
