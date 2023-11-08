@@ -7,9 +7,13 @@
  * @s: operator argument
  * Return: function pointer corresponding to operator given
  */
+
 int (*get_op_func(char *s))(int, int)
 {
 	int i;
+	
+	if (s == NULL)
+		return (NULL);
 	
 	op_t operations[] = {
 		{"+", op_add},
