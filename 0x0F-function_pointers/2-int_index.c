@@ -5,15 +5,14 @@
  * @array: the array to iterate over.
  * @size: its size.
  * @cmp: the function to be used to compare values.
+ * Return: 0 success, -1 failure.
  */
 int int_index(int *array, int size, int (*cmp)(int))
 {
 	int i;
 
 	if (array == NULL || cmp == NULL || size <= 0)
-	{
 		return (-1);
-	}
 
 	for (i = 0; i < size; i++)
 	{
