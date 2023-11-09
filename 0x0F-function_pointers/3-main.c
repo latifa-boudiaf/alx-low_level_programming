@@ -34,6 +34,6 @@ int main(int argc, char *argv[])
 	}
 	res = fun(num1, num2);
 
-	printf("%d\n", res);
+	printf("%i\n", res);
 	return (0);
 }
