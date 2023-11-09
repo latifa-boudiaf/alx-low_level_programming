@@ -10,7 +10,6 @@
 
 int (*get_op_func(char *s))(int, int)
 {
-	int i;
 	
 	op_t operations[] = {
 		{"+", op_add},
@@ -21,6 +20,7 @@ int (*get_op_func(char *s))(int, int)
 		{NULL, NULL}
 	};
 
+	int i;
 	i = 0;
 	
 	while (i < 5)
