@@ -11,9 +11,7 @@ size_t print_list(const list_t *h)
 {
 	size_t nbr_nodes;
 
-	nbr_nodes = 0;
-
-	while (h != NULL)
+	for (nbr_nodes = 0; h; i++)
 	{
 		if (h->str == NULL)
 		{
@@ -23,7 +21,6 @@ size_t print_list(const list_t *h)
 		{
 			printf("[%lu] %s\n", (unsigned long)h->len, h->str);	
 		}
-		nbr_nodes++;
 		h = h->next;
 	}
 

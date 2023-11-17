@@ -8,6 +8,7 @@
  * @head: a pointer to a pointer to the first list element.
  * @str: the string of the element.
  */
+
 list_t *add_node(list_t **head, const char *str)
 {
 	list_t *new;
