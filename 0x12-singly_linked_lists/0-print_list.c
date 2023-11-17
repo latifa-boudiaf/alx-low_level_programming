@@ -6,12 +6,11 @@
  * @h: a pointer to the list.
  * Return: the number of nodes.
  */
-
 size_t print_list(const list_t *h)
 {
-	size_t nbr_nodes;
+	size_t i;
 
-	for (nbr_nodes = 0; h; nbr_nodes++)
+	for (i = 0; h; i++)
 	{
 		if (h->str == NULL)
 		{
@@ -23,6 +22,5 @@ size_t print_list(const list_t *h)
 		}
 		h = h->next;
 	}
-
-	return (nbr_nodes);
+	return (i);
 }
