@@ -8,21 +8,19 @@
  */
 size_t print_list(const list_t *h)
 {
-	const list_t *current;
 	size_t i;
 
-	current = h;
-	for (i = 0; current; i++)
+	for (i = 0; h; i++)
 	{
-		if (current->str == NULL)
+		if (h->str == NULL)
 		{
 			printf("[0] (nil)\n");
 		}
 		else
 		{
-			printf("[%u] %s\n", current->len, current->str);	
+			printf("[%u] %s\n", h->len, h->str);	
 		}
-		current = current->next;
+		h = h->next;
 	}
 	return (i);
 }
