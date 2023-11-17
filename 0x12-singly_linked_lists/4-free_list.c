@@ -1,9 +1,21 @@
 #include "lists.h"
+#include <stdio.h>
 
 /**
- * add_node_end - Adds a new node at the end of a list_t list.
+ * free_list - frees list.
  * @head: Pointer to a pointer to the head of the list.
- * @str: String to be duplicated and set as the new node's str.
  *
- * Return: The address of the new element, or NULL if it failed.
+ * Return: nothing
  */
+void free_list(list_t *head)
+{
+	list_t *temp;
+
+	while (head != NULL)
+	{
+		temp = head;
+		head = head->next;
+		free(temp->str);
+		free(temp);
+	}
+}
