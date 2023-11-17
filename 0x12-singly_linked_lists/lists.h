@@ -2,7 +2,17 @@
 #define MAIN_H
 #include <stddef.h>
 
-typedef struct list_s {
+/**
+ * struct listint_s - singly linked list
+ * @n: integer
+ * @next: points to the next node
+ *
+ * Description: singly linked list node structure
+ * for Holberton project
+ */
+
+typedef struct list_s 
+{
     char *str;
     unsigned int len;
     struct list_s *next;
