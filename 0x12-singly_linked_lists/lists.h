@@ -1,11 +1,9 @@
 #ifndef MAIN_H
 #define MAIN_H
-#include <stdlib.h>
-#include <string.h>
 
 typedef struct list_s {
     char *str;
-    unsigned int len;
+    int len;
     struct list_s *next;
 } list_t;
 
