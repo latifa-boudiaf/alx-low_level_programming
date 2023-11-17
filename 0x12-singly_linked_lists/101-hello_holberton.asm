@@ -1,6 +1,6 @@
 section .data
-    ; Define a null-terminated string to be printed
-    hello_string db "Hello, Holberton", 0
+    ; Define a null-terminated string to be printed with a newline
+    hello_string db "Hello, Holberton", 0xA ; 0xA is the newline character
 
 section .text
     ; Declare the main function
