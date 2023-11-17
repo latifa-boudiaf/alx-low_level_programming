@@ -6,16 +6,14 @@
  * @h: the pointer of the first element.
  * Return: the number of elements.
  */
+
 size_t list_len(const list_t *h)
 {
 	size_t count;
 
-	count = 0;
-	while (h != NULL)
+	for (count = 0; h; count++)
 	{
-		count++;
 		h = h->next;
 	}
-
 	return (count);
 }
