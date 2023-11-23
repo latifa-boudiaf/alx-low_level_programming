@@ -9,7 +9,7 @@
 
 int clear_bit(unsigned long int *n, unsigned int index)
 {
-	unsigned int len, k;
+	unsigned long int len, k;
 
 	len = sizeof(*n) * 8 - 1;
 
