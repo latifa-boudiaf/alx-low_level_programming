@@ -25,7 +25,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	while ((i = fgetc(fd)) != EOF && letters_written < letters)
 	{
-		_putchar(c);
+		_putchar(i);
 		letters_written++;
 	}
 
