@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -49,5 +48,5 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	close(fd);
 	if (bytes_written != bytes_read)
 		return (0);
-	return (bytes_written);
+	return (bytes_read);
 }
