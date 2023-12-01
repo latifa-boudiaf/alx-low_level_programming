@@ -1,91 +1,234 @@
+#define _GNU_SOURCE
 #include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <elf.h>
-#include <sys/types.h>
-
-#define BUFFER_SIZE 64
 
 /**
- * print_error: prints the error message.
- * @msg: the message to print.
+ * printclass - prints the class from an elf header
+ *
+ * @head: header information
+ *
  * Return: void
  */
 
-void print_error(const char *msg)
+void printclass(char *head)
 {
-	const char *ptr = msg;
-	while (*ptr != '\0')
-		ptr++;
-	write(STDERR_FILENO, msg, ptr - msg);
+	printf("  %-35s", "Class:");
+	if (head[4] == 2)
+		printf("ELF64\n");
+	else if (head[4] == 1)
+		printf("ELF32\n");
+	else
+		printf("<unknown: %02hx>", head[4]);
 }
 
 /**
- * print_elf_header_info - 
- * @elf_header: 
+ * printdata - prints the information about data organization
+ * from the elf header
+ *
+ * @head: header information
+ *
  * Return: void
  */
 
-void print_elf_header_info(const Elf64_Ehdr *elf_header)
+void printdata(char *head)
 {
-	int i;
-	printf("Magic:   ");
-	for (i = 0; i < EI_NIDENT; ++i)
-		printf("%02x ", elf_header->e_ident[i]);
-
-	printf("\nClass: %s\n", (elf_header->e_ident[EI_CLASS] == ELFCLASS32) ? "ELF32" : "ELF64");
-	printf("Data: %s\n", (elf_header->e_ident[EI_DATA] == ELFDATA2LSB) ? "2's complement, little endian" : "2's complement, big endian");
-	printf("Version: %d (current)\n", elf_header->e_ident[EI_VERSION]);
-	printf("OS/ABI:  %d\n", elf_header->e_ident[EI_OSABI]);
-	printf("ABI Version: %d\n", elf_header->e_ident[EI_ABIVERSION]);
-
-	printf("Type:    %d\n", elf_header->e_type);
-	printf("Entry point address: 0x%lx\n", (unsigned long)elf_header->e_entry);
+	printf("  %-35s", "Data:");
+	if (head[5] == 1)
+		printf("2's complement, little endian\n");
+	else if (head[5] == 2)
+		printf("2's complement, big endian\n");
+	else
+		printf("<unknown: %02hx>", head[5]);
 }
 
 /**
- * main- entry point
- * @argc: number of arguments.
+ * printversion - prints version info from elf header
+ * @head: header information
+ *
+ * Return: void
+ */
+
+void printversion(char *head)
+{
+	printf("  %-35s", "Version:");
+	if (head[6] <= EV_CURRENT)
+	{
+		printf("%d", head[6]);
+		if (head[6] == EV_CURRENT)
+			printf(" (current)\n");
+		else
+			printf("\n");
+	}
+	else
+	{
+		printf("49 <unknown %%lx>");
+	}
+}
+
+/**
+ * printabi - prints abi version from header information
+ *
+ * @head: header information
+ *
+ * Return: void
+ */
+
+void printabi(char *head)
+{
+	printf("  %-35s", "OS/ABI:");
+	if (head[7] == 0)
+		printf("UNIX - System V\n");
+	else if (head[7] == 1)
+		printf("UNIX - HP-UX\n");
+	else if (head[7] == 2)
+		printf("UNIX - NetBSD\n");
+	else if (head[7] == 3)
+		printf("UNIX - Linux\n");
+	else if (head[7] == 4)
+		printf("UNIX - GNU Hurd\n");
+	else if (head[7] == 6)
+		printf("UNIX - Solaris\n");
+	else if (head[7] == 7)
+		printf("UNIX - AIX\n");
+	else if (head[7] == 8)
+		printf("UNIX - IRIX\n");
+	else if (head[7] == 9)
+		printf("UNIX - FreeBSD\n");
+	else if (head[7] == 10)
+		printf("UNIX - Tru64\n");
+	else if (head[7] == 11)
+		printf("UNIX - Novell Modesto\n");
+	else if (head[7] == 12)
+		printf("UNIX - OpenBSD\n");
+	else if (head[7] == 13)
+		printf("UNIX - Open VMS\n");
+	else if (head[7] == 14)
+		printf("UNIX - NonStop Kernel\n");
+	else if (head[7] == 15)
+		printf("UNIX - AROS\n");
+	else if (head[7] == 16)
+		printf("UNIX - Fenix OS\n");
+	else if (head[7] == 17)
+		printf("UNIX - CloudABI\n");
+	else
+		printf("<unknown: %02x>\n", head[7]);
+	printf("  %-35s%d\n", "ABI Version:", head[8]);
+}
+
+/**
+ * printtype - prints elf filetype from header info
+ *
+ * @head: header information
+ *
+ * Return: void
+ */
+
+void printtype(char *head)
+{
+	int index;
+
+	if (head[5] == 1)
+		index = 16;
+	else
+		index = 17;
+	printf("  %-35s", "Type:");
+	if (head[index] == 1)
+		printf("REL (Relocatable file)\n");
+	else if (head[index] == 2)
+		printf("EXEC (Executable file)\n");
+	else if (head[index] == 3)
+		printf("DYN (Shared object file)\n");
+	else if (head[index] == 4)
+		printf("CORE (Core file)\n");
+	else
+		printf("<unknown>: %02x%02x\n", head[16], head[17]);
+}
+
+/**
+ * printentry - prints entry address of executable from header
+ *
+ * @head: header information
+ *
+ * Return: void
+ */
+
+void printentry(char *head)
+{
+	int i, end;
+
+	printf("  %-35s0x", "Entry point address:");
+	if (head[4] == 2)
+		end = 0x1f;
+	else
+		end = 0x1b;
+	if (head[5] == 1)
+	{
+		i = end;
+		while (head[i] == 0 && i > 0x18)
+			i--;
+		printf("%x", head[i--]);
+		while (i >= 0x18)
+			printf("%02x", (unsigned char) head[i--]);
+		printf("\n");
+	}
+	else
+	{
+		i = 0x18;
+		while (head[i] == 0)
+			i++;
+		printf("%x", head[i++]);
+		while (i <= end)
+			printf("%02x", (unsigned char) head[i++]);
+		printf("\n");
+	}
+}
+
+/**
+ * main - entry point
+ *
+ * @argc: number of arguments
  * @argv: array of arguments.
- * Return: int
+ *
+ * Return: 0 on success
+ * 1 on incorrect arg number
+ * 2 on file open failure
+ * 3 on read failure
+ * 4 on failure to read enough bytes for a 32 bit file
+ * 98 if elf magic is not matched
  */
-
 int main(int argc, char *argv[])
 {
-	int fd;
-	Elf64_Ehdr elf_header;
+	int file, i;
+	char head[32];
+
 	if (argc != 2)
+		return (1);
+	file = open(argv[1], O_RDONLY);
+	if (file == -1)
+		return (1);
+	i = read(file, head, 32);
+	if (i == -1)
+		return (1);
+	if (i < 28)
+		return (1);
+	if (head[0] != 0x7f || head[1] != 'E' || head[2] != 'L' || head[3] != 'F')
 	{
-		print_error("Usage: elf_header elf_filename\n");
+		dprintf(STDERR_FILENO,
+			"readelf: Error: hellofile: Failed to read file header\n");
 		return (98);
 	}
 
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-	{
-		print_error("Error: Unable to open the file\n");
-		return (98);
-	}
-
-	if (read(fd, &elf_header, sizeof(Elf64_Ehdr)) != sizeof(Elf64_Ehdr))
-	{
-		print_error("Error: Unable to read ELF header\n");
-		close(fd);
-		return (98);
-	}
-
-	if (elf_header.e_ident[EI_MAG0] != ELFMAG0 || elf_header.e_ident[EI_MAG1] != ELFMAG1 ||
-        elf_header.e_ident[EI_MAG2] != ELFMAG2 || elf_header.e_ident[EI_MAG3] != ELFMAG3)
-	{
-		print_error("Error: Not an ELF file\n");
-		close(fd);
-		return (98);
-	}
-
-	lseek(fd, 0, SEEK_SET);
-
-	print_elf_header_info(&elf_header);
-	close(fd);
+	printf("ELF Header:\n  Magic:   ");
+	for (i = 0; i < 16; i++)
+		printf("%02x ", (unsigned int) head[i]);
+	printf("\n");
+	printclass(head);
+	printdata(head);
+	printversion(head);
+	printabi(head);
+	printtype(head);
+	printentry(head);
 	return (0);
 }
