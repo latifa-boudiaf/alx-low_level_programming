@@ -9,12 +9,13 @@
 #define BUFFER_SIZE 1024
 
 /**
- * main - Copies the content of one file to another file
- * @argc: Number of arguments passed
- * @argv: Array of arguments passed
+ * main - Copies the content of a file to another file.
+ * @argc: Number of arguments passed.
+ * @argv: Array of arguments passed.
  *
- * Return: 0 on success, or the respective error code on failure
+ * Return: 0 on success, or the respective error code on failure.
  */
+
 int main(int argc, char *argv[])
 {
 	int fd_from, fd_to;
