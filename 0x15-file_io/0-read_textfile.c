@@ -1,6 +1,8 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 /**
  * read_textfile - reads letters from a file and writes them.
@@ -12,21 +14,40 @@
 
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	FILE *fp;
-	int c;
-	size_t count = 0;
+	int fd;
+	char *buffer;
+	int bytes_read, bytes_written;
 
-	if (filename == NULL)
+	if (filename == NULL || letters == 0)
 		return (0);
-	fp = fopen(filename, "r");
-	if (fp == NULL)
-		return (0);
-	while ((c = fgetc(fp)) != EOF && count < letters)
+
+	buffer = malloc(sizeof(char) * (letters));
+	if (buffer == NULL)
 	{
-		putchar(c);
-		count++;
+		close(fd);
+		return (0);
 	}
 	
-	fclose(fp);
-	return (count);
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+	{
+		free(buffer);
+		return (0);
+	}
+	
+
+	bytes_read = read(fd, buffer, letters);
+	if (bytes_read == -1)
+	{
+		free(buffer);
+		close(fd);
+		return (0);
+	}
+
+	bytes_written = write(STDOUT_FILENO, buffer, bytes_read);
+	free(buffer);
+	close(fd);
+	if (bytes_written != bytes_read)
+		return (0);
+	return (bytes_written);
 }
